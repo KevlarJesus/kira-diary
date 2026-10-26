@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f4f4f2" />
+    <title>Дневник Киры</title>
+    <meta name="description" content="Кормления, подгузники, сон и вес — на одном экране" />
+    <!-- В браузере дневник ставится на главный экран и открывается без адресной строки. -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Дневник Киры" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <script>
+      // Если приложение не запустилось, экран должен сказать почему, а не остаться белым.
+      (function () {
+        function show(what) {
+          var root = document.getElementById('root')
+          if (!root || root.firstChild) return
+          root.innerHTML =
+            '<div style="padding:24px;font:400 15px/1.5 system-ui,sans-serif;color:#141414">' +
+            '<p style="font-size:19px;margin:0 0 10px">Приложение не запустилось</p>' +
+            '<p style="margin:0 0 14px;color:#5c5c5a">Покажите этот текст тому, кто его собирал.</p>' +
+            '<pre style="white-space:pre-wrap;word-break:break-word;background:#ececea;border-radius:16px;padding:14px;font:400 12px/1.45 ui-monospace,monospace">' +
+            String(what).replace(/</g, '&lt;') +
+            '</pre></div>'
+        }
+        window.addEventListener('error', function (e) {
+          show((e.message || 'ошибка') + '\n' + (e.filename || '') + ':' + (e.lineno || '') + '\n' + ((e.error && e.error.stack) || ''))
+        })
+        window.addEventListener('unhandledrejection', function (e) {
+          show('unhandled rejection: ' + ((e.reason && (e.reason.stack || e.reason.message)) || e.reason))
+        })
+        setTimeout(function () {
+          show('Скрипт не выполнился за 8 секунд: вебвью не разобрал сборку или не нашёл файлы.')
+        }, 8000)
+      })()
+    </script>
+    <script type="module" crossorigin src="./assets/index-CONG3E1o.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/index-DPPsqj6l.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-CwgzN1IG.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
